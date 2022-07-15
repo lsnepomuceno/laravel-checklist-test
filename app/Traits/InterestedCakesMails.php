@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Fluent;
 use App\Jobs\{SendEmailForCakesInterestsSubscriptionJob, SendEmailForCakesInterestsUnsubscriptionJob};
 use App\Models\Interest;
 
@@ -13,9 +14,9 @@ trait InterestedCakesMails
                                                  ->onQueue('emails');
     }
 
-    public function interestedUnsubscription(Interest $interest): void
+    public function interestedUnsubscription(Fluent $interest): void
     {
-        SendEmailForCakesInterestsUnsubscriptionJob::dispatch($interest->load('cake'))
+        SendEmailForCakesInterestsUnsubscriptionJob::dispatch($interest)
                                                    ->onQueue('emails');
     }
 }
