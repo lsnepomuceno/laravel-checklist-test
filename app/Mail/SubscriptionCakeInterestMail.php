@@ -11,14 +11,15 @@ class SubscriptionCakeInterestMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(protected Interest $interest)
+    public function __construct(public Interest $interest)
     {
-        //
     }
 
     public function build(): self
     {
         return $this->from('no-reply@cakestore.com', 'Online Cake Store')
-                    ->view('emails.interests.subscription');
+                    ->subject("Compra do bolo: {$this->interest->cake->name}")
+                    ->to($this->interest->email, $this->interest->name)
+                    ->markdown('emails.interests.subscription');
     }
 }

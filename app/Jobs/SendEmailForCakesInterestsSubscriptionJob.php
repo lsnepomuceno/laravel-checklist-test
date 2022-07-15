@@ -22,8 +22,7 @@ class SendEmailForCakesInterestsSubscriptionJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            Mail::to($this->interest->email)
-                ->send(new SubscriptionCakeInterestMail($this->interest));
+            Mail::send(new SubscriptionCakeInterestMail($this->interest));
         } catch (\Exception $e) {
             Log::error('SUBSCRIPTION_MAIL_ERROR', ['message' => $e->getMessage()]);
         }
