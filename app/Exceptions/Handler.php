@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler
         }
 
         if ($e instanceof AuthorizationException) {
-            return response()->json(['message' => 'Autorização não concedida.'], 403);
+            return response()->json(['message' => $e->getMessage() ?? 'Autorização não concedida.'], 403);
         }
 
         if ($e instanceof AuthenticationException) {

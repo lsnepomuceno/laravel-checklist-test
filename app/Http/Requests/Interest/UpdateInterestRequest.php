@@ -2,13 +2,16 @@
 
 namespace App\Http\Requests\Interest;
 
+use App\Traits\ValidateCakeAmountTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateInterestRequest extends FormRequest
 {
+    use ValidateCakeAmountTrait;
+
     public function authorize(): bool
     {
-        return true;
+        return $this->validateCakeAmount();
     }
 
     public function rules(): array

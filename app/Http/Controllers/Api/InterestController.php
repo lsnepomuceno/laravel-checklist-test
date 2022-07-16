@@ -31,6 +31,7 @@ class InterestController extends Controller
     {
         $validatedData = $request->validated();
         $storedInterest = $this->interest->create($validatedData)?->load('cake');
+        $storedInterest->cake()->decrement('amount');
 
         return new InterestResource($storedInterest);
     }
@@ -43,6 +44,12 @@ class InterestController extends Controller
     public function update(UpdateInterestRequest $request, Interest $interest): JsonResponse
     {
         $validatedData = $request->validated();
+
+        if ($interest->cake_id !== $validatedData['cake_id']) {
+            $interest->cake()->increment('amount');
+            $this->cake->find($validatedData['cake_id'])
+                       ->decrement('amount');
+        }
 
         return response()->json(
             [
