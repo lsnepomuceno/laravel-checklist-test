@@ -1,64 +1,82 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="#!" target="_blank"><img src="https://user-images.githubusercontent.com/14093492/179338639-560f9958-e627-4645-8c94-1e147f77fe78.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Sobre o Teste
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O desafio consiste no desenvolvimento de uma API para cadastro de bolos, contendo uma listagem de pessoas interessados na compra, além da gestão de envios de e-mail baseado em filas (queues).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Sobre o Projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O projeto foi desenvolvido utilizando PHP 8.1, Laravel 9, MySQL 8, Redis, MailHog e Sail.
 
-## Learning Laravel
+## Requisitos obrigatórios finalizados
+1. :heavy_check_mark: Criar um CRUD de rotas de API para o cadastro de bolos.
+2. :heavy_check_mark: Os bolos deverão ter Nome, Peso (em gramas), Valor, Quantidade disponível e uma lista de e-mail de interessados.
+3. :heavy_check_mark: Após o cadastro de e-mails interessados, caso haja bolo disponível, o sistema deve enviar um e-mail para os interessados sobre a disponibilidade do bolo.
+4. :heavy_check_mark: Pode ocorrer de 50.000 clientes se cadastrarem e o processo de envio de emails não deve ser algo impeditivo.
+5. :heavy_check_mark: Utilizar fila para o envio de e-mails.
+6. :heavy_check_mark: Utilizar Resources para construção da API.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Como executar a aplicação
+#### 1 - Clone o projeto
+```SHELL
+git clone git@github.com:lsnepomuceno/laravel-checklist-test.git && cd laravel-checklist-test
+```
 
-## Laravel Sponsors
+#### 2 - Execute o script de automação da instalação
+```SHELL
+make install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### 3 - Caso queira adicionar o virtual-host no seu arquivo de hosts, basta executar o comando abaixo
+```SHELL
+sudo sed -i "127.0.0.1   laravel-checklist-test.test/" /etc/hosts
+```
+##### Caso não esteja em ambiente Linux, basta adicionar o mapeamento acima no arquivo de hosts do seu sistema
 
-### Premium Partners
+## Execução do projeto
+#### Por ser tratar de uma API, é necessário utilizar um client Rest.
+Para facilitar a análise, disponibilizei a documentação das rotas via PostMan:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/12685679/UzQvs4eg)
+<hr />
 
-## Contributing
+#### Acesso externo ao MySQL
+<table>
+    <tr>
+        <td><b>Host</b></td>       
+        <td>localhost</td>       
+    </tr>
+    <tr>
+        <td><b>Port</b></td>       
+        <td>3306</td>       
+    </tr>
+    <tr>
+        <td><b>User</b></td>       
+        <td>sail</td>       
+    </tr>
+    <tr>
+        <td><b>Pass</b></td>       
+        <td>password</td>       
+    </tr>
+    <tr>
+        <td><b>DB</b></td>       
+        <td>laravel_checklist_test</td>       
+    </tr>
+</table>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Acesso ao dashboard do MailHog
+<table>
+    <tr>
+        <td><b>URL</b></td>       
+        <td>http://localhost:8025</td>       
+    </tr>
+</table>
+<hr />
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Testes automatizados
+Durante a instalação os testes já são executados no final do processo, mas caso queira executar manualmente, basta executar o comando abaixo:
+```SHELL
+ docker exec -it checklist-test-app php artisan test
+```
